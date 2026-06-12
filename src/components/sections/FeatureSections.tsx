@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { InteractiveMedia } from "@/components/visuals/InteractiveMedia";
 import { featureSections } from "@/data/homepage";
 
 export function FeatureSections() {
@@ -8,18 +8,32 @@ export function FeatureSections() {
       <div className="mx-auto max-w-[80rem] px-[var(--padding-global)]">
         {featureSections.map((section) => (
           <div
-            key={section.title}
+            key={section.id}
+            id={section.id}
             className={`mb-16 grid items-center gap-10 last:mb-0 md:mb-24 lg:grid-cols-2 lg:gap-16 ${
               section.reverse ? "lg:[&>*:first-child]:order-2" : ""
             }`}
           >
             <div>
-              <h2 className="text-2xl font-medium tracking-tight text-white md:text-3xl">
+              <p className="text-sm font-medium uppercase tracking-[0.15em] text-mbx-primary">
                 {section.title}
+              </p>
+              <h2 className="mt-2 text-2xl font-medium tracking-tight text-theme md:text-3xl">
+                {section.subtitle}
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-mbx-text-secondary">
                 {section.description}
               </p>
+              <ul className="mt-6 space-y-2">
+                {section.items.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 text-mbx-text-secondary before:mt-2 before:h-1.5 before:w-1.5 before:shrink-0 before:rounded-full before:bg-mbx-primary before:content-['']"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-6">
                 <Button href={section.link} variant="outline-dark">
                   {section.linkLabel} <span className="arrow ml-1">→</span>
@@ -27,32 +41,11 @@ export function FeatureSections() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl bg-[var(--mbx-bg-neutral-03)]">
-              {section.mediaType === "video" ? (
-                <div className="relative aspect-[16/11] w-full">
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    poster={section.poster}
-                    className="h-full w-full object-cover"
-                  >
-                    <source src={section.video} type="video/mp4" />
-                  </video>
-                </div>
-              ) : (
-                <div className="relative aspect-[16/11] w-full">
-                  <Image
-                    src={section.image!}
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-              )}
-            </div>
+            <InteractiveMedia
+              visual={section.visual}
+              alt={section.alt}
+              hotspots={section.hotspots}
+            />
           </div>
         ))}
       </div>

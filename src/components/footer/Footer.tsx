@@ -1,50 +1,29 @@
 import Link from "next/link";
-import { MapboxLogo } from "@/components/icons/MapboxLogo";
+import { OpsaiLogo } from "@/components/icons/OpsaiLogo";
+import { externalLinks, navLinks } from "@/data/homepage";
 
 const footerLinks = {
-  products: {
-    title: "Products",
-    groups: [
-      {
-        heading: "Maps",
-        links: [
-          { label: "Maps Overview", href: "https://www.mapbox.com/maps" },
-          { label: "Mapbox GL JS", href: "https://www.mapbox.com/mapbox-gljs" },
-          { label: "Mobile Maps SDK", href: "https://www.mapbox.com/mobile-maps-sdk" },
-        ],
-      },
-      {
-        heading: "Search",
-        links: [
-          { label: "Search Overview", href: "https://www.mapbox.com/search-service" },
-          { label: "Geocoding", href: "https://www.mapbox.com/geocoding" },
-        ],
-      },
+  proyecto: {
+    title: "Proyecto",
+    links: [
+      { label: "Inicio", href: "#proyecto" },
+      { label: "Visión", href: "#vision" },
+      { label: "Roadmap", href: "#roadmap" },
     ],
   },
-  solutions: {
-    title: "Solutions",
+  comunidad: {
+    title: "Comunidad",
     links: [
-      { label: "Automotive", href: "https://www.mapbox.com/automotive" },
-      { label: "On-Demand Logistics", href: "https://www.mapbox.com/on-demand-logistics" },
-      { label: "Weather", href: "https://www.mapbox.com/weather" },
-      { label: "Retail", href: "https://www.mapbox.com/retail" },
+      { label: "Contribuir", href: "#comunidad" },
+      { label: "Equipo", href: "#equipo" },
+      { label: "Investigación", href: "#investigacion" },
     ],
   },
-  developers: {
-    title: "Developers",
+  recursos: {
+    title: "Recursos",
     links: [
-      { label: "Documentation", href: "https://docs.mapbox.com" },
-      { label: "Quickstart", href: "https://docs.mapbox.com/help/getting-started/" },
-      { label: "Support", href: "https://www.mapbox.com/support" },
-    ],
-  },
-  company: {
-    title: "Company",
-    links: [
-      { label: "Who we are", href: "https://www.mapbox.com/company" },
-      { label: "Careers", href: "https://www.mapbox.com/careers", tag: "HIRING" },
-      { label: "Blog", href: "https://www.mapbox.com/blog" },
+      { label: "Documentación", href: externalLinks.docs },
+      { label: "GitHub", href: externalLinks.github, external: true },
     ],
   },
 };
@@ -54,53 +33,21 @@ export function Footer() {
     <footer className="border-t border-mbx-border bg-[var(--mbx-bg)] text-mbx-text-secondary">
       <div className="mx-auto max-w-[80rem] px-[var(--padding-global)] py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-1">
-            <Link href="/" className="inline-block text-white">
-              <MapboxLogo />
+          <div className="lg:col-span-2">
+            <Link href="/" className="inline-block">
+              <OpsaiLogo />
             </Link>
-            <ul className="mt-6 space-y-3 text-sm">
-              <li>
-                <a href="https://account.mapbox.com/auth/signup" className="hover:text-white">
-                  Sign Up
-                </a>
-              </li>
-              <li>
-                <a href="https://www.mapbox.com/pricing" className="hover:text-white">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="https://www.mapbox.com/contact" className="hover:text-white">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed">
+              Open Power Systems AI — ingeniería abierta para simular, analizar y
+              optimizar sistemas eléctricos con inteligencia artificial.
+            </p>
           </div>
 
-          <FooterColumn title={footerLinks.products.title}>
-            {footerLinks.products.groups.map((group) => (
-              <div key={group.heading} className="mb-6 last:mb-0">
-                <h4 className="mb-3 text-xs font-medium uppercase tracking-wider text-mbx-text-muted">
-                  {group.heading}
-                </h4>
-                <ul className="space-y-2 text-sm">
-                  {group.links.map((link) => (
-                    <li key={link.label}>
-                      <a href={link.href} className="hover:text-white">
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </FooterColumn>
-
-          <FooterColumn title={footerLinks.solutions.title}>
+          <FooterColumn title={footerLinks.proyecto.title}>
             <ul className="space-y-2 text-sm">
-              {footerLinks.solutions.links.map((link) => (
+              {footerLinks.proyecto.links.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="hover:text-white">
+                  <a href={link.href} className="hover:text-theme">
                     {link.label}
                   </a>
                 </li>
@@ -108,11 +55,11 @@ export function Footer() {
             </ul>
           </FooterColumn>
 
-          <FooterColumn title={footerLinks.developers.title}>
+          <FooterColumn title={footerLinks.comunidad.title}>
             <ul className="space-y-2 text-sm">
-              {footerLinks.developers.links.map((link) => (
+              {footerLinks.comunidad.links.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="hover:text-white">
+                  <a href={link.href} className="hover:text-theme">
                     {link.label}
                   </a>
                 </li>
@@ -120,17 +67,18 @@ export function Footer() {
             </ul>
           </FooterColumn>
 
-          <FooterColumn title={footerLinks.company.title}>
+          <FooterColumn title={footerLinks.recursos.title}>
             <ul className="space-y-2 text-sm">
-              {footerLinks.company.links.map((link) => (
+              {footerLinks.recursos.links.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="inline-flex items-center gap-2 hover:text-white">
+                  <a
+                    href={link.href}
+                    className="hover:text-theme"
+                    {...("external" in link && link.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
                     {link.label}
-                    {"tag" in link && link.tag && (
-                      <span className="rounded bg-mbx-primary/20 px-1.5 py-0.5 text-[10px] font-medium text-mbx-primary">
-                        {link.tag}
-                      </span>
-                    )}
                   </a>
                 </li>
               ))}
@@ -140,21 +88,15 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col gap-6 border-t border-mbx-border pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap items-center gap-4 text-xs text-mbx-text-muted">
-            <span>All Rights Reserved © Mapbox</span>
-            <a href="https://www.mapbox.com/legal/tos" className="hover:text-white">
-              Terms
-            </a>
-            <a href="https://www.mapbox.com/legal/privacy" className="hover:text-white">
-              Privacy
-            </a>
-            <a href="https://www.mapbox.com/platform/security" className="hover:text-white">
-              Security
-            </a>
+            <span>© {new Date().getFullYear()} Open Power Systems AI</span>
+            {navLinks.slice(0, 3).map((link) => (
+              <a key={link.label} href={link.href} className="hover:text-theme">
+                {link.label}
+              </a>
+            ))}
           </div>
           <div className="flex gap-4">
-            <SocialLink href="https://github.com/mapbox" label="GitHub" />
-            <SocialLink href="https://twitter.com/mapbox" label="X" />
-            <SocialLink href="https://www.linkedin.com/company/mapbox" label="LinkedIn" />
+            <SocialLink href={externalLinks.github} label="GitHub" />
           </div>
         </div>
       </div>
@@ -171,7 +113,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="mb-4 text-xs font-medium uppercase tracking-wider text-white">{title}</h3>
+      <h3 className="mb-4 text-xs font-medium uppercase tracking-wider text-theme">{title}</h3>
       {children}
     </div>
   );
@@ -183,7 +125,7 @@ function SocialLink({ href, label }: { href: string; label: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-sm text-mbx-text-muted transition hover:text-white"
+      className="text-sm text-mbx-text-muted transition hover:text-theme"
       aria-label={label}
     >
       {label}
